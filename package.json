@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "live-server"
+    "test": "jest",
+    "start": "live-server src"
   },
   "author": "",
   "license": "ISC",
