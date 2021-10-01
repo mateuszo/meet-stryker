@@ -1,14 +1,46 @@
-import {isAdult, isAllowedToBuyBeer} from '../src/logic';
+import { isAllowedToBuyBeer } from "../src/logic";
 
-test('30 yo in PL is adult', () => {
-  expect(isAdult(30, 'PL')).toBe(true)
-})
-test('full coverage', () => {
-  isAdult(30, 'PL')
-  isAdult(30, 'USA')
-  isAdult(30, 'DE')
-  isAdult(30, '')
-  isAllowedToBuyBeer(10, 0, 'PL')
-  isAllowedToBuyBeer(10, 6, 'PL')
-})
+const poorTestData = [
+  // age,  bac,  country,  expectation
+  [17, 0, "PL", false],
+  [20, 0, "PL", true],
+  [20, 1, "PL", false],
+  [20, 1, "DE", false],
+  [20, 1, "USA", false],
+];
 
+// test('full coverage, noting is actually tested', () => {
+//   for(let data of poorTestData){
+//     const [age, bac, country] = data;
+//     isAllowedToBuyBeer(age, bac, country)
+//   }
+// })
+
+const betterTestData = [
+  // PL
+  // age,  bac,  country,  expectation
+  [17, 0, "PL", false], // young, sober -> no beer
+  [18, 0, "PL", true], // adult, sober -> beer
+  [18, 1, "PL", false], // adult, drunk -> no beer
+
+  // DE
+  // age,  bac,  country,  expectation
+  [15, 0, "DE", false], // young, sober -> no beer
+  [18, 0, "DE", true], // adult, sober -> beer
+  [18, 1, "DE", false], // adult, drunk -> no beer
+
+  // USA
+  // age,  bac,  country,  expectation
+  [20, 0, "USA", false], // young, sober -> no beer
+  [21, 0, "USA", true], // adult, sober -> beer
+  [21, 1, "USA", false], // adult, drunk -> no beer
+];
+
+describe("full coverage, some things are tested", () => {
+  test.each(betterTestData)(
+    "age: %i, bac: %d, country: %s, expectation: %s",
+    (age, bac, country, expectation) => {
+      expect(isAllowedToBuyBeer(age, bac, country)).toBe(expectation);
+    }
+  );
+});
