@@ -11,5 +11,9 @@ export function isAdult(age, country) {
       return age >= 21;
     case "DE":
       return age >= 16;
+    case "YE":
+      return false;
+    default:
+      return false;
   }
 }
