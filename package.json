@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "live-server src"
+    "start": "live-server src",
+    "test:mutation": "stryker run"
   },
   "author": "",
   "license": "ISC",
