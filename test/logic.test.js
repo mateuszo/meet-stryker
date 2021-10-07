@@ -11,12 +11,12 @@ const poorTestData = [
   [20, 1, ""],
 ];
 
-// test("full coverage, noting is actually tested", () => {
-//   for (let data of poorTestData) {
-//     const [age, bac, country] = data;
-//     isAllowedToBuyBeer(age, bac, country);
-//   }
-// });
+test("full coverage, noting is actually tested", () => {
+  for (let data of poorTestData) {
+    const [age, bac, country] = data;
+    isAllowedToBuyBeer(age, bac, country);
+  }
+});
 
 const betterTestData = [
   // PL
@@ -45,7 +45,7 @@ const betterTestData = [
   [20, 0, "", false], // adult, sober -> no beer
 ];
 
-describe("full coverage, some things are tested", () => {
+xdescribe("full coverage, some things are tested", () => {
   test.each(betterTestData)(
     "age: %i, bac: %d, country: %s, expectation: %s",
     (age, bac, country, expectation) => {
